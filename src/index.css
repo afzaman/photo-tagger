@@ -15,3 +15,11 @@ code {
 img {
   max-width: 100%;
 }
+
+.dropdown-menu {
+  background-color: gray;
+  position: absolute;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 10px;
+}
