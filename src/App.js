@@ -1,32 +1,58 @@
 import meme from './images/meme.jpg'
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import useToggle from './hooks/useToggle';
+import getRandom from './hooks/getRandom'
 import DropdownMenu from './components/DropdownMenu'
+import memeTags from './images/memeTags.js'
 
 function App() {
 
   const [dropdownOpen, togggleDropdownOpen] = useToggle(false)
   const [dropdownCoords, setDropdownCoords] = useState({x: 0, y: 0})
+  const [imgTags] = useState(getRandom(memeTags, 3))
+  const imgRef = useRef()
+  const [imageSize, updateImageSize] = useState({x: 0, y: 0})
 
   function handleImageClick(event) {
     const {"pageX": x, "pageY": y} = event
+    const xSize = imgRef.current.scrollWidth
+    const ySize = imgRef.current.scrollHeight
+    updateImageSize({xSize, ySize})
     setDropdownCoords({x, y})
     togggleDropdownOpen()
+
   }
 
+
+
   return (
-    <div onClick={handleImageClick}>
-      {dropdownOpen && (
-        <DropdownMenu
-        xPos={dropdownCoords.x}
-        yPos={dropdownCoords.y}
-        />
+    <div>
+      {imgTags.map((tag) =>
+        <p key={tag.y}>
+          {tag.label}
+        </p>
       )}
-      <img 
-        src={meme} 
-        alt=""
-      />
+      <div 
+        onClick={handleImageClick}
+        
+      >
+        {dropdownOpen && (
+          <DropdownMenu
+          xPos={dropdownCoords.x}
+          yPos={dropdownCoords.y}
+          xSize={imageSize.xSize}
+          ySize={imageSize.ySize}
+          tags={imgTags}
+          />
+        )}
+        <img 
+          src={meme} 
+          alt=""
+          ref={imgRef}
+        />
+      </div>
     </div>
+    
   );
 }
 
