@@ -1,17 +1,16 @@
 
 function DropdownMenu(props){
     const {xPos, yPos, tags, xSize, ySize} = props
-    const relX = xPos / xSize
-    const relY = yPos / ySize
+    const relX = Math.round((xPos / xSize) * 100) / 100
+    const relY = Math.round((yPos / ySize) * 100) / 100
 
     function handleButtonClick(x, y){
         if (relX < x + .1 && relX > x - .1){
             if (relY < y + .1 && relY > y - .1){
                 alert("correct")
-                console.log("correct")
             }
         } else {
-            console.log("incorrect")
+            alert("incorrect")
         }
     }
 
