@@ -13,27 +13,18 @@ function App() {
   const imgRef = useRef()
   const [imageSize, updateImageSize] = useState({x: 0, y: 0})
 
-  // useEffect(() => {
-  //   fetchTags()
-  // }, [])
+  useEffect(() => {
+    fetchTags()
+  }, [])
 
-  const snapshot = firestore.collection('coordinates').get()
-  console.log(snapshot)
-
-  async function getTags() {
-    const snapshot = await firestore.collection('coordinates').get()
-    setImageTags(snapshot.docs.map(doc => doc.data))
-    console.log(imgTags)
-    // return snapshot.docs.map(doc => doc.data)
+  const fetchTags = async()=>{
+    const response = firestore.collection('coordinates')
+    const data = await response.get()
+    data.docs.forEach(item => {
+      setImageTags(imgTags => [...imgTags, item.data()])
+    })
+    
   }
-
-  // const fetchTags = async()=>{
-  //   const response = firestore.collection('coordinates')
-  //   const data = await response.get()
-  //   data.docs.forEach(item => {
-  //     setImageTags([...imgTags, item.data()])
-  //   })
-  // }
 
   function handleImageClick(event) {
     const {"pageX": x, "pageY": y} = event
@@ -46,15 +37,15 @@ function App() {
 
   return (
     <div>
-      <button onClick={getTags}>Fetch Tags</button>
-      {imgTags.map((tag) =>
-        <p key={tag.y}>
-          {tag.label}
-        </p>
-      )}
+      <div className="navbar">
+        {imgTags.map((tag) =>
+          <a key={tag.y}>
+            {tag.label}
+          </a>
+        )}
+      </div>
       <div 
         onClick={handleImageClick}
-        
       >
         {dropdownOpen && (
           <DropdownMenu
