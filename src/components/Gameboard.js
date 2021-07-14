@@ -25,7 +25,10 @@ function Gameboard(props) {
     <div>
       <div className="navbar">
         {randomTags.map((tag) =>
-          <a key={tag.y}>
+          <a
+            key={tag.y}
+            className="nav-item"
+          >
             {tag.label}
           </a>
         )}

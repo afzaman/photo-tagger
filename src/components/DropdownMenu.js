@@ -19,17 +19,16 @@ function DropdownMenu(props){
             className="dropdown-menu"
             style={{ top: `calc(${yPos}px)`, left: `${xPos}px` }}
         >
-            {relX}, {relY}
-            <ul>
-                {tags.map((tag) => 
-                    <button
-                        key={tag.x}
-                        onClick={() => handleButtonClick(tag.x, tag.y)}
-                    >
-                        {tag.label}
-                    </button>
-                )}
-            </ul>
+
+            {tags.map((tag) => 
+                <button
+                    className="dropdown-button"
+                    key={tag.x}
+                    onClick={() => handleButtonClick(tag.x, tag.y)}
+                >
+                    {tag.label}
+                </button>
+            )}
         </div>
     )
 }
