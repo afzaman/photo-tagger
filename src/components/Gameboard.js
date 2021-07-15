@@ -21,16 +21,28 @@ function Gameboard(props) {
     togggleDropdownOpen()
   }
 
+  function handleButtonClick(tag, index, relX, relY){
+    console.log(tag, relX, relY)
+    if (relX < tag.x + .1 && relX > tag.x - .1){
+      console.log("x is correct")
+      if (relY < tag.y + .1 && relY > tag.y - .1){
+          randomTags[index].found = "true"
+        }
+    } else {
+  }
+  }
+
   return (
     <div>
       <div className="navbar">
         {randomTags.map((tag) =>
-          <a
+          <div
             key={tag.y}
             className="nav-item"
+            found={tag.found}
           >
             {tag.label}
-          </a>
+          </div>
         )}
       </div>
       <div 
@@ -43,6 +55,7 @@ function Gameboard(props) {
           xSize={imageSize.xSize}
           ySize={imageSize.ySize}
           tags={randomTags}
+          handleButtonClick={handleButtonClick}
           />
         )}
         <img 

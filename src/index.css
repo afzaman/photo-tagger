@@ -75,7 +75,7 @@ img {
   width: 100%;
   list-style-type: none;
   margin: 0;
-  padding: 10px;
+  padding: 20px;
   overflow: hidden;
   background-color: #333;
   text-align: center;
@@ -83,11 +83,17 @@ img {
 .nav-item {
   background-color: var(--clr-primary);
   margin-right: 10px;
-  padding: 1%;
+  padding: 10px;
   border-radius: 10px;
   color: var(--clr-light);
   font-size: 20px;
   font-weight: 600;
+  display: inline;
+}
+
+.nav-item[found="true"]  {
+  background-color: var(--clr-attn);
+  color: var(--clr-dark)
 }
 
 .dropdown-menu {

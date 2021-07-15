@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom"
 import '../index.css'
-import meme from '../images/meme.jpg'
 
 function StartMenu(props) {
     

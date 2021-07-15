@@ -1,5 +1,5 @@
 import React from 'react'
-import { HashRouter as BrowserRouter, Switch, Route, Redirect, useHistory } from "react-router-dom";
+import { HashRouter as BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import Gameboard from './components/Gameboard'
 import StartMenu from './components/StartMenu'
 import Header from './components/Header'
@@ -27,7 +27,11 @@ function App() {
   }
 
   function handleClick(){
-    setRandomTags(getRandom(imgTags, 3))
+    let tags = getRandom(imgTags, 3)
+    tags.forEach((e) => {
+      e.found = "false"
+    })
+    setRandomTags(tags)
   }
 
   return (
