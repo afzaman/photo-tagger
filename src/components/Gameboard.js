@@ -1,7 +1,8 @@
-import { useState, useRef} from 'react'
+import { useState, useRef, useEffect } from 'react'
 import useToggle from '../hooks/useToggle';
 import DropdownMenu from '../components/DropdownMenu'
 import meme from '../images/meme.jpg'
+import Header from './Header';
 
 function Gameboard(props) {
 
@@ -11,6 +12,15 @@ function Gameboard(props) {
   const [dropdownCoords, setDropdownCoords] = useState({x: 0, y: 0})
   const imgRef = useRef()
   const [imageSize, updateImageSize] = useState({x: 0, y: 0})
+  const [time, updateTime] = useState(0)
+
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      updateTime(time + 1);
+    }, 1000);
+  });
+
 
   function handleImageClick(event) {
     const {"pageX": x, "pageY": y} = event
@@ -29,22 +39,17 @@ function Gameboard(props) {
           randomTags[index].found = "true"
         }
     } else {
-  }
+      }
   }
 
   return (
     <div>
-      <div className="navbar">
-        {randomTags.map((tag) =>
-          <div
-            key={tag.y}
-            className="nav-item"
-            found={tag.found}
-          >
-            {tag.label}
-          </div>
-        )}
-      </div>
+      <Header
+        randomTags={randomTags}
+        time={time}
+      >
+      </Header>
+
       <div 
         onClick={handleImageClick}
       >

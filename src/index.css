@@ -96,6 +96,11 @@ img {
   color: var(--clr-dark)
 }
 
+.timer {
+  margin-right: 0;
+  margin-left: auto;
+}
+
 .dropdown-menu {
   background-color: gray;
   position: absolute;

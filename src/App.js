@@ -26,8 +26,8 @@ function App() {
       })
   }
 
-  function handleClick(){
-    let tags = getRandom(imgTags, 3)
+  function handleClick(difficulty){
+    let tags = getRandom(imgTags, difficulty)
     tags.forEach((e) => {
       e.found = "false"
     })
@@ -36,7 +36,6 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Header/>
       <Switch>
 
         <Route exact path="/">
