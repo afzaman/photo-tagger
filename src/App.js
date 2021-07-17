@@ -2,8 +2,8 @@ import React from 'react'
 import { HashRouter as BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import Gameboard from './components/Gameboard'
 import StartMenu from './components/StartMenu'
-import Header from './components/Header'
 import Footer from './components/Footer'
+import GameOver from './components/GameOver';
 import { firestore } from './firebase/config'
 import { useState, useEffect } from 'react'
 import getRandom from './hooks/getRandom'
@@ -13,6 +13,7 @@ function App() {
 
   const [imgTags, setImageTags] = useState([])
   const [randomTags, setRandomTags] = useState([])
+  const [time, updateTime] = useState(0)
 
   useEffect(() => {
       fetchTags()
@@ -47,7 +48,11 @@ function App() {
         </Route>
 
         <Route path="/Gameboard">
-          <Gameboard randomTags={randomTags}/>
+          <Gameboard randomTags={randomTags} time={time} updateTime={updateTime}/>
+        </Route>
+
+        <Route path="/GameOver">
+          <GameOver time={time}/>
         </Route>
 
       </Switch>
