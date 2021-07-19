@@ -14,6 +14,7 @@ function App() {
   const [imgTags, setImageTags] = useState([])
   const [randomTags, setRandomTags] = useState([])
   const [time, updateTime] = useState(0)
+  const [retrievingData, updateRetrievingData] = useState(true)
 
   useEffect(() => {
       fetchTags()
@@ -25,6 +26,7 @@ function App() {
       data.docs.forEach(item => {
           setImageTags(imgTags => [...imgTags, item.data()])
       })
+      updateRetrievingData(false)
   }
 
   function handleClick(difficulty){
@@ -44,7 +46,7 @@ function App() {
         </Route>
 
         <Route path="/StartMenu">
-          <StartMenu handleClick={handleClick}/>
+          <StartMenu handleClick={handleClick} retrievingData={retrievingData}/>
         </Route>
 
         <Route path="/Gameboard">
