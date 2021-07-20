@@ -1,4 +1,4 @@
-# Odin Project Battleship Game
+# Odin Project Where's Waldo Game
 
 This is a where's waldo-esque game developed for the Odin Project's [Javascript Track](https://www.theodinproject.com/paths/full-stack-javascript?) 
 
